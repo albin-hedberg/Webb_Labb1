@@ -200,7 +200,7 @@ function getProducts() {
   displayProducts();
 }
 
-function displayProducts() {
+async function displayProducts() {
   pizzaProducts.innerHTML = "";
   inbakadeProducts.innerHTML = "";
   drinkProducts.innerHTML = "";
@@ -263,7 +263,13 @@ function displayProducts() {
       default:
         break;
     }
+
+    await sleep(50);
   }
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function applyProductStyles(
@@ -277,8 +283,8 @@ function applyProductStyles(
   detailsBtn
 ) {
   col.classList.add("col");
-  card.classList.add("card");
-  cardImg.classList.add("card-img-top", "p-3");
+  card.classList.add("card", "fade-in");
+  cardImg.classList.add("card-img-top");
   cardImg.src = cardImgUrl;
   cardImg.alt = "Product image";
   cardImg.loading = "lazy";
